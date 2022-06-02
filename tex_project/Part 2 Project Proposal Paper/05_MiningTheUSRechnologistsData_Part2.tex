@@ -1,0 +1,113 @@
+\documentclass{article}
+%\usepackage[left=1in,top=1in,bottom=1in,right=1in]{geometry}
+\usepackage{amsmath}%,amssymb,amsfonts} % pretty math formatting
+\usepackage{graphicx} % insert binary graphics
+\usepackage{bm} % for bold math
+%\usepackage{setspace} % control line spacing
+\usepackage{url} %typeset urls
+
+
+\title{Project Proposal for CSCI$7751$ on Cholesky(QR)
+factorization on multicore architectures }
+\author{Tuguluke Abulitibu}
+\date{\today}
+
+\begin{document}
+\maketitle
+
+%\twocolumn
+
+\begin{abstract}
+\emph{
+In this proposal, we will start with background section by describing the Final project's ideas and extention. Followed by research problem section stating the cholesky decomposition and the idea of the process. The core of the proposal is in the technical approach section explaning the project design and technical plan. The milestones section is where we provides the work plan for carrying out the project. This proposal ends with the reference section\footnote{More references may add later during the work.}.
+}
+\end{abstract}
+
+\iffalse
+1. The background section can be omitted unless your project is building on
+previous work. If it is doing that, you need to refer to the work, describe it,
+and say how you’re extending it. What are the new ideas?
+2. Begin with a research problem section. State the technical problem you
+intend to solve. Indicate how it might be useful. This can be brief; it is just
+an introduction to the next section.
+3. The technical approach section. This is the core of the proposal. It’s where
+you spell out your technical plan and explain the project design. Evaluation
+issues would also be addressed in this section.
+4. The milestones section provides a work plan for carrying out the project.
+This is your schedule for getting the project done.
+5. The references section mentions any references you’ll use, and sources for
+data, software, and other materials.
+\fi
+
+\section{Background}
+In linear algebra, the Cholesky factorization is a decomposition of a Hermitian, positive-definite matrix into the product of a lower triangular matrix and its conjugate transpose[4]. 
+\[\mathbf{A = L L}^{*}\]
+It is really efficient in solving the system of linear equations $Ax = b$. 
+ QR factorization of a matrix is a decomposition of a matrix into a product of an orthogonal matrix $Q$ and an upper triangular matrix $R$[5]. 
+\[
+A = QR = Q \begin{bmatrix} R_1 \\ 0 \end{bmatrix}
+  =  \begin{bmatrix} Q_1, Q_2 \end{bmatrix} \begin{bmatrix} R_1 \\ 0 \end{bmatrix}
+  = Q_1 R_1 
+\]
+Both have huge applications in solving real life problems.  The shared memory
+implementation of Cholesky(QR) involves  matrix factorization using subdivision of the matrix into
+roughly equal parts so that it can be simultaneously computed by separate processors. Lots of researches have been done on the combinations of these two topics. our project is building on some of these previous works. Next, Let us look at the research problem.
+\section{ Research problem}
+LAPACK(Linear Algebra PACKage) is a routine for solving systems of simultaneous linear equations, least-squares solutions of linear systems of equations, eigenvalue problems, and singular value problems[2]. BLAS(Basic Linear Algebra Subprograms)are a specified set of low-level subroutines that perform common linear algebra operations, and are still used as a building block in higher-level math programming languages and libraries. In Cholesky(QR)
+factorization application on multicore architectures, multithreading etc, LAPACK can play very important roles, and that's why we need to spend time studying the layout and structure of it and learn hwo to apply it to our problem. In the next section,
+we will spell our  project design and  technical plan.
+\section{Technical approach}
+Even though computer architecture has moved toward multi-core sturcture, the current numerical linear algebra sequential algorithm can not be easily implemented on it, due to complexity of the matrix opration, let alone higher level decompostions. Cholesky(QR) decompostion has its unique charactor that need careful algorithm to be run on  multicore architecture. My project will be focusing on parallelism of these particular decompostions. \\
+In this project, we will start by doing the sequential decompistion algorithm in C and compare the result with differrent size of matrices. Later we will study the LAPACK and three levels of computations in BLAS so that to implement multithreading in decomposition to get the speedup results.  All these are based on existing references.  Due to the complexity of the decompostion algorithm, forcing the matrix into submatrix and give the task to parallel may not ends up with fast or acurrate results. Though multiprocessors will process the command we wrote, in order to fasten the speed, communication between each processors on which steps in the key issue in finishing the decompostion in quick speed. One way to do this is  scheduling
+dense linear algebra operations dynamic scheduler[1], it is capable of using
+the full potential of the node on machine while taking care of splitting the original matrix. My goal is to implement this idea in real numerical experiments. \\
+Message Passing Interface (MPI) will be studied to pragmatically support our design, since  it is a standardized  message-passing system  to function on parallel computers, to overcome the 'bottle-neck' on several LAPACK routines that we use. The goal of this project is to implement Cholesky(QR) factorization on multicore architectures, to extend our knowledge on Linear Algebra, implement what we learnt in Dr. Gita's textbook[1] to real mathematical problems and deepen our knowledges on computer sciences of archietecture and parallel processing, while understanding numerical linear algebra from not only math/sequential point of views but parallel. 
+\pagebreak
+\section{Milestones}
+
+The Following table is my work plan for carrying out the project.
+\begin{center}
+    \begin{tabular}{ | l |p{5cm} |}
+    \hline
+    Date & Work Plan \\ \hline
+		Oct 22nd & Submit the Research Proposal.\\\hline
+		Oct 23nd--Oct 30th  & Study the Cholesky decompostion and write up a seqencial code in C.\\\hline
+    Oct 31st--Nov 6th & Study the LAPACK and BLAS and write up a cholesky decompostion using LAPACK library in C. \\\hline
+    Nov 7th--Nov 13th& Present the my proposal in front my class and study the QR decompostion along with coding.\\\hline
+    Nov 14th--Nov 20th & Study MPI/APIs and apply it on Cholesky(QR) factorization.\\\hline
+		Nov 21st--Nov 30th & Finishing up the paper writing, and numerical results.\\\hline
+		    Dec 1st--Dec 8th & Organizing a Beamer slides with my result, and present my project in front of the class.\\\hline
+				Dec 9th& Submit the paper. \\\hline
+
+    
+    \end{tabular}
+\end{center}
+
+%\section{Bibliography}
+ \begin{thebibliography}{9}
+\bibitem{suspension}     Harry F. Jordan, Gita Alaghband; \textit{Fundamentals of Parallel Processing}.  
+\bibitem{suspension}   Emmanuel Agullo, Cedric Augonnet, Jack Dongarra, Hatem Ltaief, Raymond Namyst,
+Jean Roman, Samuel Thibault, Stanimire Tomov; \textit{Dynamically scheduled Cholesky
+factorization on multicore architectures with GPU accelerators}.  
+\bibitem{suspension}  E. Anderson,
+Z. Bai,
+C. Bischof,
+S. Blackford,
+J. Demmel,
+J. Dongarra,
+J. Du Croz,
+A. Greenbaum,
+S. Hammarling,
+A. McKenney,
+D. Sorensen; \textit{LAPACK Users' Guide 
+Third Edition}.  
+%\bibitem{vr}  \textit{Singular value decomposition--Wikipedia, the free encyclopedia};  
+%\bibitem{vr}  \textit{MATLAB 6.5 Image Processing Toolbox Tutorial}; 
+%\bibitem{vr}  Kristian Sandberg; \textit{Introduction to image processing in Matlab 1}; 
+%http://amath.colorado.edu/courses/5720/2000Spr/Labs/Worksheets/Matlabtutorial/matlabimpr.html
+\bibitem{suspension}    Leslie Hogben  ; \textit{Handbook of Linear Algebra (Discrete Mathematics and Its Applications)}. 
+\bibitem{suspension}   Lloyd N. Trefethen,David Bau III ; \textit{Numerical Linear Algebra}.  
+\bibitem{suspension}    David S. Watkins; \textit{Fundamentals of Matrix Computations}.  
+\end{thebibliography}
+
+\end{document}
