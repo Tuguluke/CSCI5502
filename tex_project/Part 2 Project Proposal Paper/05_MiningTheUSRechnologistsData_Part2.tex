@@ -1,55 +1,77 @@
-\documentclass{article}
-%\usepackage[left=1in,top=1in,bottom=1in,right=1in]{geometry}
-\usepackage{amsmath}%,amssymb,amsfonts} % pretty math formatting
-\usepackage{graphicx} % insert binary graphics
-\usepackage{bm} % for bold math
-%\usepackage{setspace} % control line spacing
-\usepackage{url} %typeset urls
+\documentclass[sigconf]{acmart}
+
+\usepackage{booktabs} % For formal tables
 
 
-\title{Project Proposal for CSCI$5502$ on Mining the US Technologists Data}
-\author{Abulitibu Tuguluke}
-\date{\today}
+% Copyright
+%\setcopyright{none}
+%\setcopyright{acmcopyright}
+%\setcopyright{acmlicensed}
+\setcopyright{rightsretained}
+%\setcopyright{usgov}
+%\setcopyright{usgovmixed}
+%\setcopyright{cagov}
+%\setcopyright{cagovmixed}
+
+
+% DOI
+%\acmDOI{10.475/123_4}
+%
+%% ISBN
+%\acmISBN{123-4567-24-567/08/06}
+%
+%%Conference
+%\acmConference[WOODSTOCK'97]{ACM Woodstock conference}{July 1997}{El
+%	Paso, Texas USA} 
+%\acmYear{1997}
+%\copyrightyear{2016}
+%
+%\acmPrice{15.00}
+
 
 \begin{document}
-\maketitle
+	\title{Mining the US Technologist data}
+	\titlenote{Produces the permission block, and
+		copyright information}
+	\subtitle{Extended Abstract}
+	\subtitlenote{The full version of the author's guide is available as
+		\texttt{acmart.pdf} document}
+	
+	
+	\author{Abulitibu Tuguluke}
+	\authornote{Dr.~Trovato insisted his name be first.}
+	\orcid{1234-5678-9012}
+	\affiliation{%
+		\institution{DHI Group Inc.}
+		\streetaddress{P.O. Box 1212}
+		\city{Dublin} 
+		\state{Ohio} 
+		\postcode{43017-6221}
+	}
+	\email{abtu8803@colorado.edu}
+	
 
-%\twocolumn
+	
+	
+	\begin{abstract}
+		This paper provides a sample of a \LaTeX\ document which conforms,
+		somewhat loosely, to the formatting guidelines for
+		ACM SIG Proceedings.\footnote{This is an abstract footnote}
+	\end{abstract}
+	
 
-\section{ Problem Statement/motivation}
- (like homework 1, what knowledge and how would you apply that knowledge, what is interesting that you hope to find)
-\section{Literature survey }
-(previous work) describe and cite.
-\section{Proposed Work }
- E.g., what do you need to do for data collection, preprocessing (cleaning  integrating, transforming, etc.), process for derived data, design, evaluation. Describe how it is different than what has been done previously from your literature survey (or if replicating).
-\section{Data set }
-(make sure you have the data set!). Provide URL and details about the data set (similar to homework 1, chapter 2, etc.)
-\section{ Evaluation Methods }
-E.g., metrics, existing solutions, …
-\section{Tools}
-\section{Milestones}
-What you plan to have done by when\\
-The Following table is my work plan for carrying out the project.
-\begin{center}
-    \begin{tabular}{ | l |p{5cm} |}
-    \hline
-    Date & Work Plan \\ \hline
-		Week 1 & Submit the Research Proposal.\\\hline
-				Week 1 & Submit the Research Proposal.\\\hline
-						Week 1 & Submit the Research Proposal.\\\hline
-								Week 1 & Submit the Research Proposal.\\\hline
-										Week 1 & Submit the Research Proposal.\\\hline
-												Week 1 & Submit the Research Proposal.\\\hline
-														Week 1 & Submit the Research Proposal.\\\hline
-																Week 1 & Submit the Research Proposal.\\\hline
-																		Week 1 & Submit the Research Proposal.\\\hline
-																				Week 1 & Submit the Research Proposal.\\\hline
-    \end{tabular}
-\end{center}
-
-%\section{Bibliography}
- \begin{thebibliography}{9}
-\bibitem{suspension}     Jiawei Han; \textit{Data Mining: Concepts and Techniques}.  
-\end{thebibliography}
-
+	
+	% We no longer use \terms command
+	%\terms{Theory}
+	
+	\keywords{ACM proceedings, \LaTeX,data mining}
+	
+	
+	\maketitle
+	
+	\input{projectbody-conf}
+	
+%	\bibliographystyle{ACM-Reference-Format}
+%	\bibliography{sigproc} 
+	
 \end{document}
