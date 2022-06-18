@@ -56,17 +56,68 @@
 		\titlepage
 	}
 	
-	\section{Introduction}
+	\section{Title}
 	\begin{frame}
-		\frametitle{One thing that caught my eyes}
-		
-		Dynamic optimizer — a perceptual video encoding optimization framework (https://netflixtechblog.com/dynamic-optimizer-a-perceptual-video-encoding-optimization-framework-e19f1e3a277f)\\
-		By Ioannis Katsavounidis\\
-		
+		\frametitle{Title}
+		Mining the US Technologists Data
+		\end{frame}
 	
-	\end{frame}
-	
+	\section{Team member}
+\begin{frame}
+	\frametitle{Team member}
+	1 Team Member: Abulitibu Tuguluke
+\end{frame}
 
+	\section{Description}
+\begin{frame}
+	\frametitle{Description}
+	There are many reports saying US is (or will) face a technology workers (Technologists). Our study will mine through the US H1B data set along with Dice.com's job and candidate profiles (along with skill sets for each job title), to try to understand which technologist job are in increasing/decreasing demands, which skill setsa are more popular/unpupular, through time and geo-location analysis. Our goal is to better understand the US technology market and what we can do to help people who try to get into tech market by providing them with skillset guidance. 
+\end{frame}
 	
+		\section{Prior Work}
+	\begin{frame}
+		\frametitle{Prior Work}
+		There is already a skillsets collection been done on tons of job descriptions for technologist through data mining. We have 1432 job titles associate with perticular skill sets. Unfortunately, most of the online literatures are focused on salary analysis, which motivates job seeker, where we will do our own salary report as well.
+	\end{frame}
+	\section{Datasets}
+\begin{frame}
+	\frametitle{Datasets}
+	\begin{itemize}
+		\item H1B data  scraped from 
+		\boxed{https://h1bdata.info/index.php}
+		
+		\item Skill set (Internal data)
+		\item US Bureau of Labor Statistics \boxed{https://www.bls.gov/developers/api_python.htm}
+	    \item Data mined and stored on my machine
+	\end{itemize}
+\end{frame}
+
+	\section{Proposed work}
+\begin{frame}
+	\frametitle{Proposed work}
+\begin{itemize}
+	\item Data scraping: Screaping HTML data from the web and store them in seperate json file
+	\item Data cleaning: Probably the most important part of the project
+	\item Data preprocessing: 
+\item Data integration: Integrate internal data with mined H1b data 
+\item Data mining and analysis
+\end{itemize}
+\end{frame}
+
+	\section{List of tool(s)sets}
+\begin{frame}
+	\frametitle{List of tool(s)sets}
+	\begin{itemize}
+		\item Beautifulsoup for mining
+		\item Python library for all the computing and analysis
+		\item JSON for data store
+	\end{itemize}
+\end{frame}
+
+	\section{Evaluation}
+\begin{frame}
+	\frametitle{Evaluation}
+	TBD. There are many ways we can evaluate the results. Comparing  time series analysis data within each job we can compute the increaing or decreasing sides of each job. Location analysis on which job are located where with repect to other jobs and locations. 
+\end{frame}
 	
 \end{document}

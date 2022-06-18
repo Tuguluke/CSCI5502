@@ -937,8 +937,8 @@ Computing Machinery]
   \ifx\acmConference@shortname\@empty
     \gdef\acmConference@shortname{#2}%
   \fi}
-\acmConference[Conference'17]{ACM Conference}{July 2017}{Washington,
-  DC, USA}
+\acmConference[CSCI 5502]{Data Mining}{Summer 2022}{Boulder,
+  University of Colorado}
 \def\subtitle#1{\def\@subtitle{#1}}
 \subtitle{}
 \newcount\num@authorgroups
@@ -1852,20 +1852,20 @@ Computing Machinery]
   \def\footnote{\ClassError{\@classname}{Please do note use footnotes
       inside \string\title{} or \string\author{} command! Use
       \string\titlenote{} or \string\authornote{} instead!}}%
-  \par\medskip\small\noindent{\bfseries ACM Reference format:}\par\nobreak
-  \noindent\authors. \@acmYear. \@title.
+%  \par\medskip\small\noindent{\bfseries ACM Reference format:}\par\nobreak
+%  \noindent\authors. \@acmYear. \@title.
   \if@ACM@journal
      \textit{\@journalNameShort}
      \@acmVolume, \@acmNumber, Article~\@acmArticle\ (\@acmPubDate),
      \ref{TotPages}~pages.
   \else
-     In \textit{Proceedings of \acmConference@name, \acmConference@venue,
-       \acmConference@date
-       \ifx\acmConference@name\acmConference@shortname\else
-         \ (\acmConference@shortname)\fi
-         ,} \ref{TotPages}~pages.
+%     In \textit{Proceedings of \acmConference@name, \acmConference@venue,
+%       \acmConference@date
+%       \ifx\acmConference@name\acmConference@shortname\else
+%         \ (\acmConference@shortname)\fi
+%         ,} \ref{TotPages}~pages.
   \fi\par
-  \noindent DOI: \nolinkurl{\@acmDOI}
+%  \noindent DOI: \nolinkurl{\@acmDOI}
 \par\egroup}
 \def\@printendtopmatter{\par\medskip
   \ifcase\ACM@format@nr
