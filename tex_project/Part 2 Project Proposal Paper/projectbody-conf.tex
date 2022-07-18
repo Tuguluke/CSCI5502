@@ -1,58 +1,119 @@
 \section{ Problem Statement/motivation}
-(like homework 1, what knowledge and how would you apply that knowledge, what is interesting that you hope to find)
-	There are many reports saying US is (or will) face a technology workers (Technologists). Our study will mine through the US H1B data set along with Dice.com's job and candidate profiles (along with skill sets for each job title), to try to understand which technologist job are in increasing/decreasing demands, which skill setsa are more popular/unpupular, through time and geo-location analysis. Our goal is to better understand the US technology market and what we can do to help people who try to get into tech market by providing them with skillset guidance. 
+%(like homework 1, what knowledge and how would you apply that knowledge, what is interesting that you hope to find)
+	There are many reports stating that the US is (or will) face a technology workers (Technologists) shortage. Our study will mine through the US H1B data set along with Dice.com's job and candidate profiles (along with skill sets for each job title),  to understand which technologist job are in increasing/decreasing demands, which skill sets are more popular/unpupular, through time. Our goal is to better understand the US technology market and what we can do to help people who try to get into tech market, by providing them with skillset guidance. \\
+	The motivation fo this report came from a conversation with one product manager stating there are no analysis on technologist supply and demand, even on salary data: The product analysts stated they don't have the data, and the R$\&$D team think it is a analyst job and should not 'waste' time on.  I decided to try that as a personal project. As I dive in more, I realized the official data set provided from department of labour is vague and uninformative, most of the job titles are lumped together, and focusing only on salary. I decided to mine my own data, while adding relative skill set by mining seperate job description data set.\\
+	My philosophy to tackle this problem/project is to use a somple algorihtm on multiple complicated sets, and not the other way: some complicated  algorithms  on a nice set. Personally, I had some 'fatigue' issues with words like 'Deep' and 'Neural' for now, both at work and school, so I've decided to do some old fashion minings by not using heavy GPU compyting with 'sexy' machine learning titles.\footnote{I will leave that to CSCI 5922-Neural Networks and Deep Learning, this fall.}. 
+\section{Literature survey}
+SpaCy's Pipeline component for part-of-speech taggging\footnote{\url {https://spacy.io/api/tagger}} comes in  really handy for the data preparation. What we did was to manually add a 'Tag' button for SMEs to spot the 'tech' words from our training set in HTML, like the following table. 
+	{
+	\begin{center}
+		\begin{tabular}{| l | l | l | l | l | r| }
+			\hline
+			&	Sentence	&	Word	&	Tag	 & POS &	Job description \# \\ \hline
+			0	&	1	&	Softwares		&Tech	& NNPS	&description: 1 \\ \hline
+			1	&	2	&	SQL	&	Tech	& NNP &	description: 1 \\ \hline
+			2	&	3	&	Java	&	Tech & NNPJ	&	description: 1	\\ \hline
+			3		&4		&Web	&	Tech	& NNS&	description: 1\\ \hline
+			4	&	5	&	Azure		&Tech	& NNP	&description: 1\\ \hline
+			\vdots	&		\vdots	&		\vdots		&	\vdots	&	\vdots	&	\vdots\\ \hline
+		\end{tabular}
+	\end{center}}
+Once we got enough samples, we apply the Viterbi algo to the future data set and mine the list of words for each job post, we then trim the list to get  something like the following for sample job titles.  
 
-\section{Literature survey }
-(previous work) describe and cite.
+\begin{center}
+	\begin{tabular}{ | p{2.5cm} |p{4.5cm} |}
+		\hline
+		Job & Skills \\ \hline
+	Net Application Developer& Microsoft technologies;Software development;C$\#$;HTML;Quality assurance;ASP.NET;Visual Basic .NET;.NET;Agile.\\\hline
+		Android Developer	& Software development;Java;Mobile development;Quality assurance;Android development.\\\hline
+		\vdots	&	\vdots\\ \hline
+	\end{tabular}
+\end{center}
 \section{Proposed Work }
-E.g., what do you need to do for data collection, preprocessing (cleaning  integrating, transforming, etc.), process for derived data, design, evaluation. Describe how it is different than what has been done previously from your literature survey (or if replicating).
+%E.g., what do you need to do for data collection, preprocessing (cleaning  integrating, transforming, etc.), process for derived data, design, evaluation. Describe how it is different than what has been done previously from your literature survey (or if replicating).
+Shockly, the department of labour data does not give any insite on specific job title but a very general one. The following 3 code has most of the tech jobs: 
+\begin{itemize}
+	\item Management Occupations 11-0000
+\item Business and Financial Operations Occupations 13-0000
+\item Computer and Mathematical Occupations 15-0000
+\end{itemize}
+Roughly 35 of them instead of what we proposed of roughly 1400+. 
+	{\small {\begin{verbatim}
+
+	['Computer and Mathematical Occupations',
+	 'Computer Occupations, All Other*',
+	 'Mathematical Science Occupations, All Other',
+	 'Computer Occupations',
+	 'Miscellaneous Computer Occupations',
+	 'Computer Occupations, All Other',
+	 'Mathematical Science Occupations',
+	 'Miscellaneous Mathematical Science Occupations',
+	 'Data Scientists and Mathematical Science Occupations, All Other'
+	 ...
+	 ]
+\end{verbatim}}}
+Which mean we either has to add a new attribute by clustering the 1400 into 15, or again write a new scrapper it mine glassdoor's data()This should not end up being a scrapper project), which does not guarentee accuracy since all are self-reported, which could be more biased than H1b data. Somehow, we have to reconcile that. 
 \begin{itemize}
 	\item Data scraping: Screaping HTML data from the web and store them in seperate json file
-	\item Data cleaning: Probably the most important part of the project
-	\item Data preprocessing: 
-	\item Data integration: Integrate internal data with mined H1b data 
-	\item Data mining and analysis
+	\subitem EMPLOYER :  String, Nominal
+	\subitem JOB TITLE :  String, Nominal
+	\subitem BASE SALARY:  Float, Interval
+	\subitem LOCATION:   String,  Nominal
+	\subitem SUBMIT DATE:  (date) String, Ordinal
+	\subitem START DATE:  (date) String, Ordinal
+	\item Data cleaning: The most time consuming process, we need to be able to get rid of the outliers once we spotted them.
+	\item Data preprocessing: Converting the saw data into meaningful use, for numeric data, we  need to convert them into float64, date has to be standard date type.
+	\item Data integration: Integrate internal data with mined H1b data by join.
+	\item Data mining and analysis: Clustering and time series. 
 \end{itemize}
-\section{Data set }
-(make sure you have the data set!). Provide URL and details about the data set (similar to homework 1, chapter 2, etc.)
+\section{Data set}
+%(make sure you have the data set!). Provide URL and details about the data set (similar to homework 1, chapter 2, etc.)
+{%
+\begin{table*}[h]
+	\caption{Scrapped data as off July 15th}
+	\begin{tabular}{llllllllll}
+		\hline
+		{} &   Dice\_job\_title &                           EMPLOYER &        JOB TITLE & BASE SALARY &      LOCATION & SUBMIT DATE &  START DATE &        Job\_Title  \\
+		\hline
+		count  &          2495079 &                            2495052 &          2467304 &     2467304 &       2467304 &     2467304 &     2467304 &          2495079  \\
+		\hline
+	\end{tabular}
+\end{table*}
+}
 	\begin{itemize}
-	\item 
-	
-	H1B data  scraped from  I scraped from open data online.\footnote{\boxed{https://h1bdata.info/index.php}.}
-	The data set is mainly from the United States Department of Labor (DOL) on how many H1-B petitions were filed and approved, with detailed information such as Employer, the title of the job, city/state locations, along with base salary, and submission and acceptance dates. 
+	\item 	H1B data  scraping from  from open data online.\footnote{\url{https://h1bdata.info/index.php}.}
+	The data set is mainly from the United States Department of Labor (DOL) on how many H1-B petitions were filed and approved, with detailed information such as Employer, the title of  job, city/state locations, along with base salary,  submission and acceptance dates. 
 	\item Skill set (Internal data)
 	\item US Bureau of Labor Statistics \\
-	\footnote{\boxed{https://www.bls.gov/developers/api$\_$python.htm}
+	\footnote{\url{https://www.bls.gov/developers/api$\_$python.htm}
 }
-	\item Data mined and stored on my machine
+	\item Data mined and stored on my machine (Prcessor: 2.6 GHz 6-Core Intel Core i7. Memory: 32 GB 2667 MHz DDR4. Graphics:AMD Radeon Pro 5500M 4 GB
+	Intel UHD Graphics 630 1536 MB).
 \end{itemize}
 \section{ Evaluation Methods }
-E.g., metrics, existing solutions, …\\
-here are many ways we can evaluate the results. Comparing  time series analysis data within each job we can compute the increaing or decreasing sides of each job. Location analysis on which job are located where with repect to other jobs and locations. 
-
+%E.g., metrics, existing solutions, …\\
+There are many ways how we can evaluate the results. Clustering Performance Evaluation Metrics like Silhouette coefficient is  a good start when applying clustering algorithm, for time series, all the error evaluations.  Besides, comparing time-series analysis data within each job we can compute the increaing or decreasing sides of each job along with correlations. Finally ,we are looking forward to apply all the relavent techniques we are currently learning in the class.\\
+As for salary data, percentile based on title, location, and or starting time is definitely the first thing to try, $99\%$ and $1\%$ are definitely outliers for that, and balancing what percentile is something I need to be careful about. I am not thinking of 'elimination' since all data counts for that column, I may if it is way imbalanced. Hence we need separate analyses for both individuals and employers. For skill sets, I am considering density distance, which is yet to explore.
 \section{Tools}
 \begin{itemize}
-	\item Beautifulsoup for mining
-	\item Python library for all the computing and analysis
-	\item JSON for data store
+	\item Beautifulsoup for mining.
+	\item Python library for all the computing and analysis.
+	\item JSON for data store.
 \end{itemize}
 \section{Milestones}
-What you plan to have done by when\\
 The Following table is my work plan for carrying out the project.
 \begin{center}
-	\begin{tabular}{ | l |p{5cm} |}
+	\begin{tabular}{ | p{3cm} |p{3.5cm} |}
 		\hline
 		Date & Work Plan \\ \hline
-		Week 1 & Submit the Research Proposal.\\\hline
-		Week 1 & Submit the Research Proposal.\\\hline
-		Week 1 & Submit the Research Proposal.\\\hline
-		Week 1 & Submit the Research Proposal.\\\hline
-		Week 1 & Submit the Research Proposal.\\\hline
-		Week 1 & Submit the Research Proposal.\\\hline
-		Week 1 & Submit the Research Proposal.\\\hline
-		Week 1 & Submit the Research Proposal.\\\hline
-		Week 1 & Submit the Research Proposal.\\\hline
-		Week 1 & Submit the Research Proposal.\\\hline
+		Week 1 - 6: 16 May - 26 June& Research and data scrapping while class works.\\\hline
+		Week 7: 27 June - 3 July & Submit Project Part 1: Project ProposalsAssignment.\\\hline
+		Week 8: 4 July - 10 July & Data cleaning\\\hline
+		Week 9: 11 July - 17 July & Submit Project Part 2: Proposal PaperAssignment\\\hline
+		Week 10: 18 July - 24 July & EDA and Classification Algorithms.\\\hline
+		Week 11: 25 July - 31 July & Submit Project Part 3: Progress ReportAssignment.\\\hline
+			Week 12: 1 August - 7 August & Continue writing the project, and building interactive demo.\\\hline
+				(Final)Week 13: 1 8 August - 10 August & Submit Peer Evaluation Form, Project Final Report(with codes), and Project PresentationAssignment(Video).\\\hline
 	\end{tabular}
 \end{center}
 
