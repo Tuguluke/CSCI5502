@@ -22,11 +22,13 @@ We successfully  mined the top 10 job titles that are in demand, they are: Syste
 Many applications can be achieved with the future work on the same topic, due to the time limit for this project, we will sketch out the big picture for the future study in the next section.
 
 ##  Link to the video demonstration
-[contributing guidelines](https://reponame/blob/master/CONTRIBUTING.md)
+[Demo](https://drive.google.com/file/d/1GNC3RVmC_lzopMu0nRByGSvc3vkbq4d9/view?usp=sharing)
 
-## [link](https://github.com/Tuguluke/CSCI5502/blob/main/05_MiningTheUSTechnologistsData_Part4.pdf) to the final project paper
+## Link to the final project paper
+[Paper](https://github.com/Tuguluke/CSCI5502/blob/main/05_MiningTheUSTechnologistsData_Part4.pdf)
 
-## [link](https://public.tableau.com/app/profile/abulitibu.tuguluke/viz/H1BApplicationsv2/H1BJobs?publish=yes) to the interactive dashboard
+## Link to the interactive dashboard
+[Dashboard](https://public.tableau.com/app/profile/abulitibu.tuguluke/viz/H1BApplicationsv2/H1BJobs?publish=yes)
 
 ## Folder strcture
 ```text
