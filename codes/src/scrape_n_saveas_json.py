@@ -1,3 +1,5 @@
+# the script to get imort the tech job title and the scrape each Job_Title
+# into a seperate json file
 from h1b_scraper import H1B_Scraper
 import pandas as pd
 import json

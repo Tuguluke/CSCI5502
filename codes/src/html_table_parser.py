@@ -5,6 +5,10 @@ import warnings
 
 
 class HTMLTableParser:
+    ```
+    get the online html table in batches and parse it into pandas tables
+    ```
+
     def parse(self, url):
         if type(url) is not str:
             return
@@ -33,6 +37,9 @@ class HTMLTableParser:
         return tables
 
     def parse_html_table(self, table):
+        ```
+        parsing the html table into pandas dataframe
+        ```
         rows = table.findAll(lambda tag: tag.name == 'tr')
         data = []
         columns = None

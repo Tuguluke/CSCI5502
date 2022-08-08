@@ -3,10 +3,17 @@ import pandas as pd
 
 
 class H1B_Scraper():
+    ```
+    Scrapper Class parser with year and job title as input
+    ```
+
     def __init__(self):
         self.parser = HTMLTableParser()
 
     def scrape(self, years, jobs):
+        ```
+        convert tables into pandas dataframe
+        ```
         assert type(years) is list or type(
             years) is tuple, "years should be list or tuple"
         assert type(jobs) is list or type(
@@ -16,21 +23,16 @@ class H1B_Scraper():
             for job in jobs:
                 url = "https://h1bdata.info/index.php?em=&job=%s&city=&year=%d" % (
                     job.replace(' ', '+'), year)
-                # The H1B info website only contains one table
                 table = self.parser.parse(url).iloc[0, 1]
                 if len(table) == 0:
                     table = None
                 tables.loc[len(tables)] = (year, job, table)
-#         def str2int(df, column):
-#             if df is None:
-#                 return
-#             if column not in df.columns:
-#                 return
-#             df.loc[:, column] = df[column].apply(lambda x: str(x.replace(',' , '')))
-#         tables['Table'].apply(lambda x: str2int(x, 'BASE SALARY'))
         return tables
 
     def extract_specific_table(self, tables, year, job):
+        ```
+        extraciting tatble with year and job title as input
+        ```
         assert type(year) is int
         assert type(job) is str
         mask = (tables['Year'] == year) & (tables['Job Title'] == job)
