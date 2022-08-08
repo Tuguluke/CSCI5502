@@ -6,6 +6,7 @@ Mining the US Technologists Data
 
 ## Team members
 Abulitibu Tuguluke (Group 5)
+
 ## Description of the project
 
 Several studies have reported the US will face an even bigger tech talent shortages in the near future, which will translate into revenue decreases.  In this report, we will study the US technologist data through varies  mining techniques, by first introducing the US department of labor data along with H1b record (due to its partially reflective and openness). We then introduce the technologist concept along with data scrapping technique we applied to obtain the dataset. After carefully processing the data with exploratory analysis, we will try to understand the technologist trends such as: Which job title is becoming more popular and which one is not. The only machine learning algorithm for this project will be semi-unsupervised clustering, through which we will try to answer the utmost question of which tech skill set is becoming more demanding, and which can help our ultimate aim of recommending the right skill sets for the future tech job-seekers.
@@ -20,11 +21,12 @@ We successfully  mined the top 10 job titles that are in demand, they are: Syste
 -  Third, there can be a better job category mapping within the knowledge gained, how and why certain jobs should be labeled as the same title with text clustering and Fuzzy matching.
 Many applications can be achieved with the future work on the same topic, due to the time limit for this project, we will sketch out the big picture for the future study in the next section.
 
-*  Link to the video demonstration
+##  Link to the video demonstration
 [contributing guidelines](https://reponame/blob/master/CONTRIBUTING.md)
-* [link](https://reponame/blob/master/CONTRIBUTING.md) to the final project paper
 
-* [link](https://public.tableau.com/app/profile/abulitibu.tuguluke/viz/H1BApplicationsv2/H1BJobs?publish=yes) to the interactive dashboard
+## [link](https://github.com/Tuguluke/CSCI5502/blob/main/05_MiningTheUSTechnologistsData_Part4.pdf) to the final project paper
+
+## [link](https://public.tableau.com/app/profile/abulitibu.tuguluke/viz/H1BApplicationsv2/H1BJobs?publish=yes) to the interactive dashboard
 
 ## Folder strcture
 ```text
